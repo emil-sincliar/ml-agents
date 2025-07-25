@@ -321,14 +321,6 @@ def main():
         model_splitter_app()
     else:
         house_price_predictor()
-            st.subheader("Location and Community Details")
-            median_income = st.number_input(
-                "Area Median Income (in tens of thousands $)",
-                min_value=1.0,
-                max_value=15.0,
-                value=5.0,
-                help="Median income in the area, e.g., 5.0 means $50,000"
-            )
             
             population = st.number_input(
                 "Block Population",
