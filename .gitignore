@@ -18,6 +18,32 @@ var/
 wheels/
 *.egg-info/
 .installed.cfg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+
+# Application specific
+model_chunks/
+*.zip
+*.pkl
+*.bin
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+.DS_Store
+
+# Docker (since we're using Streamlit Cloud)
+Dockerfile
+docker-compose.yml
+.dockerignore
 *.egg
 
 # Virtual Environment
