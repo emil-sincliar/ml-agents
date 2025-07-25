@@ -2,15 +2,31 @@
 
 A collection of intelligent agents for various data science and machine learning tasks.
 
-## Online Model Utilities
+## Model Manager: Your Tool for Handling Large Models
 
-Access our online model splitting and combining tool:
+Our user-friendly Model Manager helps you share large machine learning models easily! Try it here:
 [ML Agents Utility App](https://ml-agents-iowu6wwfewhqgeeazyvuci.streamlit.app/)
 
-This web application allows you to:
-- Split large model files into smaller chunks for easier sharing
-- Combine previously split model chunks back into a complete model
-- Handle models larger than GitHub's 100MB file limit
+### What Can It Do?
+
+1. **Split Large Models into Smaller Pieces**
+   - Have a model that's too big to email or upload?
+   - Our tool breaks it into smaller, manageable pieces
+   - All pieces are neatly packed into one zip file
+   - Perfect for sharing models that are larger than platform limits (like GitHub's 100MB limit)
+
+2. **Put the Pieces Back Together**
+   - Got a zip file with model pieces?
+   - Simply upload it to our tool
+   - The tool automatically rebuilds your model
+   - Download your fully reconstructed model, ready to use!
+
+### Why Is This Useful?
+
+- ✅ Share large models easily through email or messaging
+- ✅ Work around file size limits on platforms like GitHub
+- ✅ More reliable transfers (if one piece fails, only resend that piece)
+- ✅ Perfect for collaborative projects where you need to share models
 
 ## Model Files
 
@@ -68,18 +84,22 @@ X_train, X_test, y_train, y_test = agent.preprocess_data(
 # See examples directory for more detailed usage examples
 ```
 
-## Model File Management
+## How to Use the Model Manager
 
-### Using the Web Interface
+### 🌐 Using the Web Interface (Recommended for Beginners)
 
-1. Visit our [Streamlit App](https://ml-agents-iowu6wwfewhqgeeazyvuci.streamlit.app/)
-2. For splitting large models:
-   - Upload your model file
-   - Choose chunk size (max 90MB per chunk)
-   - Download the resulting ZIP file containing model chunks
-3. For combining chunks:
-   - Upload the ZIP file containing model chunks
-   - Download the reconstructed model file
+1. **To Split a Large Model:**
+   - Go to our [Streamlit App](https://ml-agents-iowu6wwfewhqgeeazyvuci.streamlit.app/)
+   - Click on "Model File Manager"
+   - Upload your model file (supports .joblib, .pkl, or .bin files)
+   - Choose how small you want the pieces to be (up to 90MB each)
+   - Click "Split Model" and download your zip file!
+
+2. **To Combine Model Pieces:**
+   - Go to the same app and click "Combine Model"
+   - Upload the zip file containing your model pieces
+   - Click "Combine Chunks"
+   - Download your reconstructed model!
 
 ### Using Command Line
 
