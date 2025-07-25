@@ -84,10 +84,42 @@ X_train, X_test, y_train, y_test = agent.preprocess_data(
 # See examples directory for more detailed usage examples
 ```
 
-## How to Use the Model Manager
+## Our Tools Explained
 
-### 🌐 Using the Web Interface (Recommended for Beginners)
+### 1. House Price Predictor 🏠
 
+Ever wondered how much a house in California might cost? Our House Price Predictor helps you figure it out! Here's how it works:
+
+#### What It Does
+- Takes information about a house and its location
+- Uses smart technology (machine learning) to estimate the price
+- Explains why it thinks the house would cost that much
+
+#### How to Use It
+1. **Enter Location Details:**
+   - Area income level (helps understand neighborhood value)
+   - How many people live in the area
+   - Exact location in California (using latitude and longitude sliders)
+
+2. **Describe the House:**
+   - How old the house is
+   - Number of rooms and bedrooms
+   - How many people typically live in houses in that area
+
+3. **Get Your Estimate:**
+   - Click "Predict Price"
+   - See the estimated price
+   - Get a smart analysis of what makes this price high or low
+   - See which features matter most for the price
+
+#### Cool Features
+- 📊 Shows which factors affect the price the most
+- 💡 Gives insights about the property and location
+- 🎯 Uses real California housing data for accuracy
+
+### 2. Model Manager 🔄
+
+#### What It Does
 1. **To Split a Large Model:**
    - Go to our [Streamlit App](https://ml-agents-iowu6wwfewhqgeeazyvuci.streamlit.app/)
    - Click on "Model File Manager"
@@ -132,6 +164,37 @@ ml-agents/
 ```
 
 >>>>>>> feature/add-model
+## Understanding Your House Price Prediction
+
+### 📊 What the Numbers Mean
+
+1. **Area Median Income**
+   - Input as tens of thousands (e.g., 5.0 means $50,000)
+   - Higher income areas usually mean higher house prices
+   - This is often the most important factor!
+
+2. **House Age**
+   - Newer isn't always better
+   - Very new houses (< 10 years) might be more expensive
+   - Historic homes (> 40 years) might have special value
+
+3. **Rooms and Space**
+   - More rooms usually mean higher prices
+   - The app looks at both total rooms and bedrooms
+   - Balance between rooms matters (e.g., 3 bedrooms in 6 rooms is typical)
+
+4. **Location Factors**
+   - California covers a large area (32°N to 42°N latitude)
+   - Coastal areas (around -124°W to -114°W longitude) often cost more
+   - Population density affects prices
+
+### 💡 Understanding the Insights
+
+The app gives you helpful insights like:
+- Whether the area's income level is boosting or lowering the price
+- If the house is unusually spacious or compact
+- Whether the house age is a positive or negative factor
+
 ## Development
 
 1. Clone the repository
