@@ -138,8 +138,11 @@ def model_splitter_app():
                         os.unlink(zip_path)
 
 def format_price(price):
-    """Format price in thousands to a readable format with commas"""
-    return f"${price*100:,.2f}"
+    """Format price to a readable format with commas (in hundreds of thousands)"""
+    # Price is in hundreds of thousands, so multiply by 100 to get actual price
+    formatted_price = f"${price*100:,.2f}"
+    # Add an explanatory note
+    return f"{formatted_price} (in hundreds of thousands)"
 
 def house_price_predictor():
     """House price prediction interface"""
@@ -249,6 +252,7 @@ def house_price_predictor():
             
             # Display result in a nice box
             st.success(f"### Estimated House Price: {format_price(prediction)}")
+            st.info("Note: Price predictions are based on California housing market data.")
             
             # Show feature importance
             if hasattr(agent.model, 'feature_importances_'):
