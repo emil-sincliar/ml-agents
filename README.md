@@ -2,6 +2,16 @@
 
 A collection of intelligent agents for various data science and machine learning tasks.
 
+## Online Model Utilities
+
+Access our online model splitting and combining tool:
+[ML Agents Utility App](https://ml-agents-iowu6wwfewhqgeeazyvuci.streamlit.app/)
+
+This web application allows you to:
+- Split large model files into smaller chunks for easier sharing
+- Combine previously split model chunks back into a complete model
+- Handle models larger than GitHub's 100MB file limit
+
 ## Model Files
 
 The trained models are not included in this repository due to file size limitations. You can download them from the following locations:
@@ -57,6 +67,31 @@ X_train, X_test, y_train, y_test = agent.preprocess_data(
 )
 
 # See examples directory for more detailed usage examples
+```
+
+## Model File Management
+
+### Using the Web Interface
+
+1. Visit our [Streamlit App](https://ml-agents-iowu6wwfewhqgeeazyvuci.streamlit.app/)
+2. For splitting large models:
+   - Upload your model file
+   - Choose chunk size (max 90MB per chunk)
+   - Download the resulting ZIP file containing model chunks
+3. For combining chunks:
+   - Upload the ZIP file containing model chunks
+   - Download the reconstructed model file
+
+### Using Command Line
+
+Split a model:
+```bash
+python scripts/model_utils.py split path/to/model.joblib
+```
+
+Combine chunks:
+```bash
+python scripts/model_utils.py combine path/to/chunks/directory
 ```
 
 ## Project Structure
