@@ -157,7 +157,7 @@ class DataScientistAgent:
     
     def save_model(self, filepath: str) -> None:
         """
-        Save the trained model and scaler to disk.
+        Save the trained model and scaler to disk with compression.
         
         Args:
             filepath (str): Path to save the model
@@ -171,7 +171,8 @@ class DataScientistAgent:
             'feature_names': self.feature_names
         }
         
-        joblib.dump(model_data, filepath)
+        # Use high compression to reduce file size
+        joblib.dump(model_data, filepath, compress=('gzip', 9))
         print(f"\nModel saved successfully to {filepath}")
     
     def load_model(self, filepath: str) -> None:

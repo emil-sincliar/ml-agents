@@ -48,10 +48,13 @@ def main():
     
     # Create and train model
     print("Training model...")
-    # Using fewer trees to reduce model size while maintaining good performance
+    # Using minimal parameters while maintaining acceptable performance
     model = RandomForestRegressor(
-        n_estimators=50,  # Reduced from 100 to make the model file smaller
-        max_depth=10,     # Limit tree depth to reduce model size
+        n_estimators=25,      # Minimal number of trees
+        max_depth=8,          # Limited tree depth
+        min_samples_split=5,  # Require more samples to split
+        min_samples_leaf=4,   # Require more samples in leaves
+        max_features='sqrt',  # Use sqrt of features for splitting
         random_state=42
     )
     agent.train_model(model, X_train, y_train)
