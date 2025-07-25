@@ -1,13 +1,17 @@
 """
-Streamlit web application for the House Price Prediction model
+Streamlit web application for ML Agents utilities and House Price Prediction
 """
 
 import streamlit as st
 import pandas as pd
 import numpy as np
 from ml_agents.agents import DataScientistAgent
+from scripts.model_utils import split_model, combine_model
 import joblib
 import os
+import tempfile
+import shutil
+import zipfile
 
 # Initialize session state for model training
 if 'model_trained' not in st.session_state:
@@ -34,8 +38,8 @@ def load_or_train_model():
 
 # Set page configuration
 st.set_page_config(
-    page_title="California House Price Predictor",
-    page_icon="🏠",
+    page_title="ML Agents Toolkit",
+    page_icon="🤖",
     layout="wide"
 )
 
@@ -45,12 +49,100 @@ def load_agent():
     agent.load_model('house_price_model.joblib')
     return agent
 
+def model_splitter_app():
+    """Model splitting and combining interface"""
+    st.title("🔄 Model File Manager")
+    st.markdown("""
+    This tool helps you manage large model files by splitting them into smaller chunks 
+    and combining them back together. Useful for sharing models that exceed size limits.
+    """)
+    
+    tab1, tab2 = st.tabs(["Split Model", "Combine Model"])
+    
+    with tab1:
+        st.header("Split Large Model File")
+        uploaded_model = st.file_uploader("Choose a model file to split", type=['joblib', 'pkl', 'bin'])
+        chunk_size = st.number_input("Chunk size (MB)", min_value=1, max_value=90, value=90)
+        
+        if uploaded_model is not None:
+            if st.button("Split Model"):
+                with st.spinner("Splitting model file..."):
+                    with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+                        tmp_file.write(uploaded_model.getvalue())
+                        tmp_path = tmp_file.name
+                    
+                    try:
+                        # Create a temporary directory for chunks
+                        with tempfile.TemporaryDirectory() as tmp_dir:
+                            try:
+                                # Split the model
+                                total_chunks = split_model(tmp_path, chunk_size_mb=chunk_size, output_dir=tmp_dir)
+                                
+                                # Create a zip file of all chunks
+                                zip_path = "model_chunks.zip"
+                                shutil.make_archive("model_chunks", 'zip', tmp_dir)
+                                
+                                # Offer the zip file for download
+                                with open(zip_path, "rb") as fp:
+                                    st.success(f"Model split into {total_chunks} chunks successfully!")
+                                    st.download_button(
+                                        label="Download Split Model Chunks",
+                                        data=fp,
+                                        file_name="model_chunks.zip",
+                                        mime="application/zip"
+                                    )
+                            finally:
+                                # Clean up zip file if it was created
+                                if 'zip_path' in locals() and os.path.exists(zip_path):
+                                    os.remove(zip_path)
+                    except Exception as e:
+                        st.error(f"Error processing model: {str(e)}")
+                    finally:
+                        os.unlink(tmp_path)
+    
+    with tab2:
+        st.header("Combine Model Chunks")
+        uploaded_chunks = st.file_uploader("Upload ZIP file containing model chunks", type=['zip'])
+        
+        if uploaded_chunks is not None:
+            if st.button("Combine Chunks"):
+                with st.spinner("Combining model chunks..."):
+                    # Save the uploaded zip file
+                    with tempfile.NamedTemporaryFile(delete=False, suffix='.zip') as tmp_zip:
+                        tmp_zip.write(uploaded_chunks.getvalue())
+                        zip_path = tmp_zip.name
+                    
+                    try:
+                        # Create a temporary directory and extract zip
+                        with tempfile.TemporaryDirectory() as tmp_dir:
+                            try:
+                                with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+                                    zip_ref.extractall(tmp_dir)
+                                
+                                # Combine the chunks
+                                output_path = os.path.join(tmp_dir, "reconstructed_model.joblib")
+                                combine_model(tmp_dir, output_path)
+                                
+                                # Offer the combined model for download
+                                with open(output_path, "rb") as fp:
+                                    st.success("Model chunks combined successfully!")
+                                    st.download_button(
+                                        label="Download Combined Model",
+                                        data=fp,
+                                        file_name="reconstructed_model.joblib",
+                                        mime="application/octet-stream"
+                                    )
+                            except Exception as e:
+                                st.error(f"Error combining chunks: {str(e)}")
+                    finally:
+                        os.unlink(zip_path)
+
 def format_price(price):
     """Format price in thousands to a readable format with commas"""
     return f"${price*100:,.2f}"
 
-def main():
-    # Add a title and description
+def house_price_predictor():
+    """House price prediction interface"""
     st.title("🏠 California House Price Predictor")
     st.markdown("""
     This application predicts house prices in California based on various features.
@@ -63,6 +155,31 @@ def main():
     if agent is None:
         st.error("Could not initialize the model. Please try refreshing the page.")
         return
+
+def main():
+    """Main application with navigation"""
+    st.sidebar.title("🤖 ML Agents Toolkit")
+    
+    # Navigation
+    page = st.sidebar.radio(
+        "Select Tool",
+        ["Model File Manager", "House Price Predictor"],
+        index=0
+    )
+    
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("""
+    ### About
+    This toolkit provides:
+    - Model file splitting and combining
+    - House price prediction model
+    """)
+    
+    # Display selected page
+    if page == "Model File Manager":
+        model_splitter_app()
+    else:
+        house_price_predictor()
     
     try:
         agent = load_agent()
