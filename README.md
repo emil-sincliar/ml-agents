@@ -12,11 +12,31 @@ This web application allows you to:
 - Combine previously split model chunks back into a complete model
 - Handle models larger than GitHub's 100MB file limit
 
+## Model Files
+
+The trained models are not included in this repository due to file size limitations. You can download them from the following locations:
+
+### House Price Prediction Model
+- File: `house_price_model.joblib`
+- Size: 138.04 MB
+- Storage: Use our [Streamlit App](https://ml-agents-iowu6wwfewhqgeeazyvuci.streamlit.app/) to download the model in chunks
+- Usage: After downloading all chunks, use the app or command-line tools to reconstruct the model file
 ## Installation
 
+1. Clone the repository:
 ```bash
-pip install -e .
+git clone https://github.com/emil-sincliar/ml-agents.git
+cd ml-agents
 ```
+
+2. Create a virtual environment and install dependencies:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+3. Download the required model files as described above.
 
 ## Agents Available
 
@@ -73,6 +93,25 @@ Combine chunks:
 python scripts/model_utils.py combine path/to/chunks/directory
 ```
 
+<<<<<<< HEAD
+=======
+## Project Structure
+```
+ml-agents/
+├── examples/
+│   ├── classification_example.py
+│   ├── house_price_prediction.py
+│   └── test_scenarios.py
+├── ml_agents/
+│   └── agents/
+│       └── data_scientist_agent.py
+├── tests/
+│   └── test_data_scientist_agent.py
+├── requirements.txt
+└── README.md
+```
+
+>>>>>>> feature/add-model
 ## Development
 
 1. Clone the repository
