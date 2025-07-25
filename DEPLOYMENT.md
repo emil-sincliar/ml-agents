@@ -9,7 +9,7 @@ This guide explains how to deploy and run the California House Price Predictor w
 - Git account (for Streamlit Cloud deployment)
 
 ## Quick Start: Use Our Deployed App
-Visit our live application at: [ML Agents Utility App](https://ml-agents-iowu6wwfewhqgeeazyvuci.streamlit.app/)
+Visit our live application at: [ML Agents Utility App](https://ml-agents-yjftpngbooy2vgoappydwpe.streamlit.app/)
 
 ## Installation
 

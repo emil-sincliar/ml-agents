@@ -5,7 +5,7 @@ A collection of intelligent agents for various data science and machine learning
 ## Model Manager: Your Tool for Handling Large Models
 
 Our user-friendly Model Manager helps you share large machine learning models easily! Try it here:
-[ML Agents Utility App](https://ml-agents-iowu6wwfewhqgeeazyvuci.streamlit.app/)
+[ML Agents Utility App](https://ml-agents-yjftpngbooy2vgoappydwpe.streamlit.app/)
 
 ### What Can It Do?
 
@@ -35,7 +35,7 @@ The trained models are not included in this repository due to file size limitati
 ### House Price Prediction Model
 - File: `house_price_model.joblib`
 - Size: 138.04 MB
-- Storage: Use our [Streamlit App](https://ml-agents-iowu6wwfewhqgeeazyvuci.streamlit.app/) to download the model in chunks
+- Storage: Use our [Streamlit App](https://ml-agents-yjftpngbooy2vgoappydwpe.streamlit.app/) to download the model in chunks
 - Usage: After downloading all chunks, use the app or command-line tools to reconstruct the model file
 ## Installation
 
