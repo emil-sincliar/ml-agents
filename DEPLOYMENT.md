@@ -1,11 +1,15 @@
 # California House Price Predictor - Deployment Guide
 
 ## Overview
-This guide explains how to deploy and run the California House Price Predictor web application.
+This guide explains how to deploy and run the California House Price Predictor web application. You can either run it locally or deploy it to Streamlit Cloud for free.
 
 ## Prerequisites
 - Python 3.7 or higher
 - pip (Python package installer)
+- Git account (for Streamlit Cloud deployment)
+
+## Quick Start: Use Our Deployed App
+Visit our live application at: [ML Agents Utility App](https://ml-agents-iowu6wwfewhqgeeazyvuci.streamlit.app/)
 
 ## Installation
 
@@ -41,13 +45,53 @@ streamlit run app.py
 
 The application will open in your default web browser. If it doesn't open automatically, you can access it at http://localhost:8501
 
+## Deploy to Streamlit Cloud
+
+1. **Fork the Repository**
+   - Go to our GitHub repository: https://github.com/emil-sincliar/ml-agents
+   - Click the "Fork" button to create your copy
+
+2. **Sign Up for Streamlit Cloud**
+   - Visit [share.streamlit.io](https://share.streamlit.io)
+   - Sign in with your GitHub account
+   - Click "New app"
+
+3. **Deploy Your App**
+   - Select your forked repository
+   - Select the branch (main)
+   - Set the path to: `app.py`
+   - Click "Deploy"
+
+Your app will be live in a few minutes! The URL will be: `https://[your-app-name].streamlit.app`
+
 ## Usage
 
-The web interface allows users to:
-- Input house and location details
-- Get price predictions
-- View feature importance analysis
-- Receive insights about the prediction
+### House Price Predictor 🏠
+1. Enter location details:
+   - Area median income
+   - Population
+   - Average occupancy
+   - Latitude and longitude
+
+2. Enter house details:
+   - House age
+   - Number of rooms
+   - Number of bedrooms
+
+3. Click "Predict Price" to see:
+   - Estimated house price
+   - Feature importance analysis
+   - Smart insights about the prediction
+
+### Model File Manager 🔄
+1. To split large models:
+   - Upload your model file
+   - Choose chunk size
+   - Download the zip with chunks
+
+2. To combine model chunks:
+   - Upload your zip file
+   - Download the reconstructed model
 
 ## Features
 
