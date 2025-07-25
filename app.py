@@ -7,6 +7,19 @@ import pandas as pd
 import numpy as np
 from ml_agents.agents import DataScientistAgent
 import joblib
+import os
+
+# Initialize session state for model training
+if 'model_trained' not in st.session_state:
+    st.session_state.model_trained = False
+
+def train_model():
+    """Train and save the model"""
+    import examples.house_price_prediction as trainer
+    with st.spinner('Training model... This may take a few minutes...'):
+        trainer.main()
+    st.session_state.model_trained = True
+    st.success('Model trained successfully!')
 
 # Set page configuration
 st.set_page_config(
@@ -32,6 +45,11 @@ def main():
     This application predicts house prices in California based on various features.
     Enter the details below to get a price estimate.
     """)
+    
+    # Check if model exists, if not, train it
+    if not os.path.exists('house_price_model.joblib'):
+        if not st.session_state.model_trained:
+            train_model()
     
     try:
         agent = load_agent()
