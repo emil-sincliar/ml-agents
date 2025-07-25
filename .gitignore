@@ -1,0 +1,7 @@
+# Ignore the original large model file
+house_price_model.joblib
+
+# But allow the model chunks
+!model_chunks/
+!model_chunks/*.bin
+!model_chunks/*.joblib
