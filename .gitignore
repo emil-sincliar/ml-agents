@@ -28,7 +28,11 @@ ENV/
 .idea/
 .vscode/
 *.swp
-*.swoe the original large model file
+*.swo
+
+# Large model files
+*.joblib
+model_chunks/e the original large model file
 house_price_model.joblib
 
 # But allow the model chunks

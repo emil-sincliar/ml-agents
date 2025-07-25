@@ -2,11 +2,32 @@
 
 A collection of intelligent agents for various data science and machine learning tasks.
 
+## Model Files
+
+The trained models are not included in this repository due to file size limitations. You can download them from the following locations:
+
+### House Price Prediction Model
+- File: `house_price_model.joblib`
+- Size: 138.04 MB
+- Storage: The model will be uploaded to a model registry or cloud storage. Contact the repository maintainer for access.
+- Usage: Place the downloaded model file in the root directory of the project.
+
 ## Installation
 
+1. Clone the repository:
 ```bash
-pip install -e .
+git clone https://github.com/emil-sincliar/ml-agents.git
+cd ml-agents
 ```
+
+2. Create a virtual environment and install dependencies:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+3. Download the required model files as described above.
 
 ## Agents Available
 
@@ -36,6 +57,22 @@ X_train, X_test, y_train, y_test = agent.preprocess_data(
 )
 
 # See examples directory for more detailed usage examples
+```
+
+## Project Structure
+```
+ml-agents/
+├── examples/
+│   ├── classification_example.py
+│   ├── house_price_prediction.py
+│   └── test_scenarios.py
+├── ml_agents/
+│   └── agents/
+│       └── data_scientist_agent.py
+├── tests/
+│   └── test_data_scientist_agent.py
+├── requirements.txt
+└── README.md
 ```
 
 ## Development

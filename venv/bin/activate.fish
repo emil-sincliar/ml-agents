@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /home/neeraj/Documents/GitHub/My-AI-Projects/ml_agents/venv
+set -gx VIRTUAL_ENV /home/neeraj/Documents/GitHub/ml-agents/venv
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH
